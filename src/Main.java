@@ -23,7 +23,8 @@ public class Main {
         //-20 >= t ---> cold
         //fourthTask();
 
-        //5. По введенному номеру определить цвет радуги(1-красный, 4- зеленый ...
+        //5. По введенному номеру определить цвет радуги(1-красный, 4- зеленый ...)
+        //fifthTask();
     }
 
     public static void firstTask() {
@@ -95,7 +96,7 @@ public class Main {
         System.out.print(str);
     }
 
-    public static void fourthTask(){
+    public static void fourthTask() {
         System.out.print("Enter a temperature: ");
         StringBuilder str = new StringBuilder("---> ");
 
@@ -103,10 +104,37 @@ public class Main {
             int result = scn.nextInt();
             if (result > -5) {
                 str.append("Warm");
-            } else if(result <= -5 && result > -20) {
+            } else if (result <= -5 && result > -20) {
                 str.append("Moderate");
-            }else if(result <= -20){
+            } else if (result <= -20) {
                 str.append("Cold");
+            }
+        } else {
+            str.append("Wrong input!");
+        }
+        System.out.print(str);
+    }
+
+    public static void fifthTask() {
+        System.out.print("Enter a num for rainbow color determination: ");
+        StringBuilder str = new StringBuilder("---> ");
+
+        if (scn.hasNextInt()) {
+            int result = scn.nextInt() - 1;
+            if (result <= RainBowColor.values().length) {
+                    RainBowColor color = RainBowColor.values()[result];
+
+                switch (color) {
+                    case red -> str.append("red");
+                    case green -> str.append("green");
+                    case yellow -> str.append("yellow");
+                    case orange -> str.append("orange");
+                    case blue -> str.append("blue");
+                    case indigo -> str.append("indigo");
+                    case violet -> str.append("violet");
+                }
+            }else{
+                str.append("There is no a such color");
             }
         } else {
             str.append("Wrong input!");
