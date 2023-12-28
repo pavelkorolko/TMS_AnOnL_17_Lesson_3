@@ -1,3 +1,4 @@
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +8,7 @@ public class Main {
 
         //Uncomment each of task for checking
 
+        //Switch/if else
         //1. Написать программу для вывода названия поры года по номеру месяца
         //firstTask();
 
@@ -25,6 +27,96 @@ public class Main {
 
         //5. По введенному номеру определить цвет радуги(1-красный, 4- зеленый ...)
         //fifthTask();
+
+        //Loops
+        //1. При помощи цикла for вывести на экран нечетные числа от 1 до 99.
+        //При решении используйте операцию ++.
+        //System.out.println(sixthTask(Optional.empty(), Optional.empty()));
+
+        //2. Необходимо вывести на экран числа от 5 до 1.
+        //При решении используйте операцию --.
+        //System.out.println(seventhTask(Optional.empty(), Optional.empty()));
+
+        //3. Напишите программу, где вводится любое целое позитивное число. Программа суммирует числа от 1 до введенного.
+        //System.out.println("Sum: " + eighthTask());
+
+        //4. Необходимо, чтобы программа выводила последовательность:
+        //7 14 21 28...98
+        //System.out.printf(ninthTask());
+
+        //5. Вывести 10 первых чисел последовательности 0, -5, -10, -15...
+        System.out.println(tenthTask());
+
+    }
+
+    private static String tenthTask() {
+        StringBuilder str = new StringBuilder();
+        int temp = 0;
+        for (int i = 0; i < 10; i++) {
+            str.append(temp + " ");
+            temp -= 5;
+        }
+
+        return str.toString();
+    }
+
+    private static String ninthTask() {
+        StringBuilder str = new StringBuilder();
+        int endNum = 0;
+        while(endNum < 98){
+            endNum += 7;
+            str.append(endNum + " ");
+        }
+        return str.toString();
+    }
+
+    private static int eighthTask() {
+        try {
+            System.out.print("Enter a positive num: ");
+            if (scn.hasNextInt()) {
+                int result = scn.nextInt();
+                if (result > 0) {
+                    int sum = 0;
+                    for (int i = 1; i <= result; i++) {
+                        sum += i;
+                    }
+                    return sum;
+                } else {
+                    throw new Exception("Not a positive number!");
+                }
+            } else {
+                throw new Exception("Not a number!");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 1;
+    }
+
+    private static String seventhTask(Optional<Integer> start, Optional<Integer> end) {
+        int e = end.orElse(5);
+        int s = start.orElse(1);
+        StringBuilder str = new StringBuilder();
+
+        for (int i = e; i >= s; i--) {
+            str.append(i + " ");
+        }
+
+        return str.toString();
+    }
+
+    private static String sixthTask(Optional<Integer> start, Optional<Integer> end) {
+        int s = start.orElse(1);
+        int e = end.orElse(99);
+        StringBuilder str = new StringBuilder();
+
+        for (int i = s; i <= e; i++) {
+            if (i % 2 != 0) {
+                str.append(i + " ");
+            }
+        }
+
+        return str.toString();
     }
 
     public static void firstTask() {
@@ -122,7 +214,7 @@ public class Main {
         if (scn.hasNextInt()) {
             int result = scn.nextInt() - 1;
             if (result <= RainBowColor.values().length) {
-                    RainBowColor color = RainBowColor.values()[result];
+                RainBowColor color = RainBowColor.values()[result];
 
                 switch (color) {
                     case red -> str.append("red");
@@ -133,7 +225,7 @@ public class Main {
                     case indigo -> str.append("indigo");
                     case violet -> str.append("violet");
                 }
-            }else{
+            } else {
                 str.append("There is no a such color");
             }
         } else {
