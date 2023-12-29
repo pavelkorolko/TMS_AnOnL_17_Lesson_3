@@ -45,8 +45,108 @@ public class Main {
         //System.out.printf(ninthTask());
 
         //5. Вывести 10 первых чисел последовательности 0, -5, -10, -15...
-        System.out.println(tenthTask());
+        //System.out.println(tenthTask());
 
+        //6. Составьте программу, выводящую на экран квадраты чисел от 10 до 20.
+        //System.out.println(eleventhTask());
+
+        //Доп. задания
+        //1. Выведите на экран первые 11 членов последовательности Фибоначчи.
+        //System.out.println(twelfth());
+
+        //2. За каждый мес банк начисляет к сумме вклада 7 проц от суммы.
+        // Напишите программу, в которую пользователь вводит сумму вклада и колво месяцев.
+        //Банк вычисляет конечную сумму вклада с учетом начисления процентов за каждый мес.
+        try {
+            System.out.print("Enter the initial deposit: ");
+            if (scn.hasNextDouble()) {
+                double deposit = scn.nextDouble();
+                if (deposit < 0) {
+                    throw new Exception("Negative number!");
+                }
+                System.out.print("Enter the months quantity: ");
+                if (scn.hasNextInt()) {
+                    int months = scn.nextInt();
+                    if (months < 0) {
+                        throw new Exception("Negative number!");
+                    }
+                    Bank bank = new Bank(deposit, 7, months);
+                    double output = bank.calculateEndDeposit();
+                    System.out.print("Final sum: " + output);
+                } else {
+                    throw new Exception("Incorrect input!");
+                }
+            } else {
+                throw new Exception("Wrong input!");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        //3. Напишите программу, которая выводит таблицу умн.
+        //System.out.println(fourteenthTask());
+    }
+
+    private static String fourteenthTask() {
+        StringBuilder str = new StringBuilder();
+        for (int i = 1; i < 11; i++) {
+            for (int j = 1; j < 11; j++) {
+                str.append(i + " x " + j + " = " + i * j);
+                str.append("\n");
+            }
+            str.append("\n");
+            str.append("\n");
+        }
+
+        return str.toString();
+    }
+
+    private static String twelfth() {
+        StringBuilder str = new StringBuilder();
+        //1
+//        int temp1 = 0;
+//        int temp2 = 1;
+//        for (int i = 0; i < 11; i++) {
+//            if (i == 0) {
+//                str.append(0 + " ");
+//            } else if (i == 1) {
+//                str.append(1 + " ");
+//            } else {
+//                int temp = temp1 + temp2;
+//                str.append(temp + " ");
+//                temp1 = temp2;
+//                temp2 = temp;
+//            }
+//        }
+//        return str.toString();
+
+        //2
+        for (int i = 0; i < 11; i++) {
+            str.append(fibonacci(i) + " ");
+        }
+
+        return str.toString();
+    }
+
+    private static int fibonacci(int amount) {
+        if (amount == 1) {
+            return 1;
+        }
+        if (amount == 0) {
+            return 0;
+        }
+
+        return fibonacci(amount - 1) + fibonacci(amount - 2);
+    }
+
+    private static String eleventhTask() {
+        StringBuilder str = new StringBuilder();
+
+        for (int i = 10; i <= 20; i++) {
+            str.append((int) Math.pow(i, 2) + " ");
+        }
+
+        return str.toString();
     }
 
     private static String tenthTask() {
@@ -63,7 +163,7 @@ public class Main {
     private static String ninthTask() {
         StringBuilder str = new StringBuilder();
         int endNum = 0;
-        while(endNum < 98){
+        while (endNum < 98) {
             endNum += 7;
             str.append(endNum + " ");
         }
